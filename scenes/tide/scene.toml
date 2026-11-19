@@ -1,0 +1,266 @@
+format = 1
+name = "Tide"
+description = "Luminous bands of colour rolling past each other at dawn."
+author = "enzUI"
+fps = 30
+background = "#0a2440"
+sleep_dim = 0.65
+
+[parallax]
+shift = 0.06
+duration = 1.2
+easing = "in-out-sine"
+range = 4
+
+[[layer]]
+kind = "gradient"
+colors = ["#151e33", "#293852", "#515a75", "#8e808f"]
+angle = 90
+y = 0.4
+h = 0.8
+
+[[layer]]
+kind = "orb"
+x = 0.36
+y = 0.4
+radius = 0.5
+softness = 1.0
+color = "#b7a4be1a"
+depth = 0.05
+[[layer.motion]]
+property = "scale"
+amplitude = 0.06
+period = 11
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.2
+duration = 3.0
+easing = "out-cubic"
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%A, %-d %B}"
+font = "Outfit-Regular"
+size = 0.03
+case = "upper"
+tracking = 0.08
+x = 0.5
+y = 0.085
+color = "#fff4eecc"
+depth = 0.05
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 1.0
+delay = 0.6
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "Fredoka-Medium"
+size = 0.182
+x = 0.5
+y = 0.207
+tracking = 0.018
+color = "#fff4e9"
+depth = 0.05
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 1.2
+delay = 0.5
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.04
+duration = 1.6
+delay = 0.5
+easing = "out-cubic"
+
+[[layer]]
+kind = "wave"
+y = 0.44
+amplitude = 0.06
+frequency = 0.9
+detail = 0.5
+softness = 0.007
+color = "#e6aa98"
+shade = "#bf758a"
+phase = 0.00
+depth = 0.2
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 90
+amplitude = 1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 17
+phase = 0.00
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.15
+duration = 2.2
+delay = 0.00
+easing = "out-cubic"
+
+[[layer]]
+kind = "wave"
+y = 0.52
+amplitude = 0.08
+frequency = 0.7
+detail = 0.4
+softness = 0.007
+color = "#cd7f92"
+shade = "#98577d"
+phase = 0.23
+depth = 0.35
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 70
+amplitude = -1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 13
+phase = 0.17
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.19
+duration = 2.2
+delay = 0.08
+easing = "out-cubic"
+
+[[layer]]
+kind = "wave"
+y = 0.61
+amplitude = 0.09
+frequency = 0.6
+detail = 0.5
+softness = 0.007
+color = "#a96f9a"
+shade = "#644979"
+phase = 0.46
+depth = 0.55
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 55
+amplitude = 1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 15
+phase = 0.34
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.23
+duration = 2.2
+delay = 0.16
+easing = "out-cubic"
+
+[[layer]]
+kind = "wave"
+y = 0.7
+amplitude = 0.09
+frequency = 0.5
+detail = 0.4
+softness = 0.007
+color = "#3f929d"
+shade = "#235d79"
+phase = 0.69
+depth = 0.8
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 45
+amplitude = -1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 11
+phase = 0.51
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.27
+duration = 2.2
+delay = 0.24
+easing = "out-cubic"
+
+[[layer]]
+kind = "wave"
+y = 0.8
+amplitude = 0.09
+frequency = 0.45
+detail = 0.5
+softness = 0.007
+color = "#286887"
+shade = "#194867"
+phase = 0.92
+depth = 1.1
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 38
+amplitude = 1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 13
+phase = 0.68
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.31
+duration = 2.2
+delay = 0.32
+easing = "out-cubic"
+
+[[layer]]
+kind = "wave"
+y = 0.9
+amplitude = 0.07
+frequency = 0.4
+detail = 0.4
+softness = 0.007
+color = "#1e496a"
+shade = "#102d4d"
+phase = 1.15
+depth = 1.5
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 32
+amplitude = -1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 9
+phase = 0.85
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.35
+duration = 2.2
+delay = 0.40
+easing = "out-cubic"
+
+[[layer]]
+kind = "image"
+source = "grain.png"
+fit = "stretch"
+repeat = [8, 5]
+opacity = 0.5

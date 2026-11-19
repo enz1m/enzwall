@@ -1,0 +1,9 @@
+/target/
+/.build/
+/work/
+/AGENTS.md
+/AGENTS/
+__pycache__/
+*.py[cod]
+*.log
+.DS_Store

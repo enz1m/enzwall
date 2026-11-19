@@ -1,0 +1,216 @@
+format = 1
+name = "Bloom"
+description = "Soft colour fields drifting into each other, like light through tinted glass."
+author = "enzUI"
+fps = 20
+background = "#0c0a1c"
+sleep_dim = 0.7
+
+[parallax]
+shift = 0.06
+duration = 1.0
+range = 4
+
+[[layer]]
+kind = "gradient"
+colors = ["#15102e", "#0c0a1c"]
+radial = true
+
+[[layer]]
+kind = "orb"
+x = 0.22
+y = 0.3
+radius = 0.62
+softness = 1.0
+color = "#ff4f9a8c"
+depth = 0.3
+[[layer.motion]]
+property = "x"
+amplitude = 0.09
+period = 47
+[[layer.motion]]
+property = "y"
+amplitude = 0.08
+period = 61
+phase = 0.3
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 0.55
+to = 1
+duration = 2.4
+easing = "out-cubic"
+
+[[layer]]
+kind = "orb"
+x = 0.78
+y = 0.28
+radius = 0.58
+softness = 1.0
+color = "#5b6cff85"
+depth = 0.45
+[[layer.motion]]
+property = "x"
+amplitude = -0.08
+period = 53
+phase = 0.2
+[[layer.motion]]
+property = "y"
+amplitude = 0.1
+period = 43
+phase = 0.6
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 0.55
+to = 1
+duration = 2.4
+delay = 0.1
+easing = "out-cubic"
+
+[[layer]]
+kind = "orb"
+x = 0.6
+y = 0.8
+radius = 0.6
+softness = 1.0
+color = "#18d1c47a"
+depth = 0.6
+[[layer.motion]]
+property = "x"
+amplitude = 0.11
+period = 67
+phase = 0.5
+[[layer.motion]]
+property = "y"
+amplitude = -0.07
+period = 39
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 0.55
+to = 1
+duration = 2.4
+delay = 0.2
+easing = "out-cubic"
+
+[[layer]]
+kind = "orb"
+x = 0.15
+y = 0.85
+radius = 0.5
+softness = 1.0
+color = "#ff9a4d70"
+depth = 0.75
+[[layer.motion]]
+property = "x"
+amplitude = 0.07
+period = 59
+phase = 0.8
+[[layer.motion]]
+property = "y"
+amplitude = -0.09
+period = 71
+phase = 0.1
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 0.55
+to = 1
+duration = 2.4
+delay = 0.3
+easing = "out-cubic"
+
+[[layer]]
+kind = "orb"
+x = 0.48
+y = 0.45
+radius = 0.4
+softness = 1.0
+color = "#b35cff66"
+blend = "add"
+depth = 0.9
+[[layer.motion]]
+property = "x"
+amplitude = -0.12
+period = 83
+phase = 0.35
+[[layer.motion]]
+property = "y"
+amplitude = 0.1
+period = 57
+phase = 0.9
+[[layer.motion]]
+property = "opacity"
+amplitude = 0.25
+period = 19
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "Outfit-ExtraBold"
+size = 0.24
+tracking = -0.02
+x = 0.5
+y = 0.47
+color = "#fffaf6f2"
+depth = 0.2
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 0.92
+to = 1
+duration = 1.4
+delay = 0.3
+easing = "out-cubic"
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 1.0
+delay = 0.3
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%A  ·  %-d %B}"
+font = "Outfit-Regular"
+size = 0.026
+case = "upper"
+tracking = 0.36
+x = 0.5
+y = 0.625
+color = "#fff4f0cc"
+depth = 0.2
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 1.0
+delay = 0.6
+
+[[layer]]
+kind = "particles"
+count = 11
+area = [0.0, 0.0, 1.0, 1.0]
+sizes = [0.02, 0.06]
+velocity = [0.004, -0.006]
+jitter = 0.8
+wobble = 0.02
+wobble_period = 20
+twinkle = 0.6
+source = "bokeh.png"
+seed = 6
+blend = "add"
+opacity = 0.11
+depth = 1.2
+
+[[layer]]
+kind = "image"
+source = "grain.png"
+fit = "stretch"
+repeat = [8, 5]
+opacity = 0.5

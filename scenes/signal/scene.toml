@@ -1,0 +1,252 @@
+format = 1
+name = "Signal"
+description = "An oscilloscope for your machine: live CPU and memory traces on a phosphor screen."
+author = "enzUI"
+fps = 20
+background = "#020806"
+sleep_dim = 0.8
+
+[parallax]
+shift = 0.02
+duration = 0.6
+range = 4
+
+[[layer]]
+kind = "gradient"
+colors = ["#08241a", "#03100b", "#010503"]
+radial = true
+
+[[layer]]
+kind = "image"
+source = "grid.png"
+fit = "stretch"
+x = 0.5
+y = 0.64
+w = 0.88
+h = 0.4
+repeat = [16, 6]
+opacity = 0.9
+depth = 0.3
+
+[[layer]]
+kind = "solid"
+x = 0.5
+y = 0.44
+w = 0.88
+h = 0.0022
+color = "#4dffa860"
+depth = 0.3
+
+[[layer]]
+kind = "solid"
+x = 0.5
+y = 0.84
+w = 0.88
+h = 0.0022
+color = "#4dffa860"
+depth = 0.3
+
+[[layer]]
+kind = "graph"
+bind = "mem"
+x = 0.5
+y = 0.64
+w = 0.88
+h = 0.38
+count = 64
+thickness = 2.0
+glow = 0.45
+color = "#ffb547d9"
+depth = 0.3
+
+[[layer]]
+kind = "graph"
+bind = "cpu"
+x = 0.5
+y = 0.64
+w = 0.88
+h = 0.38
+count = 64
+thickness = 2.6
+glow = 0.8
+color = "#5dffae"
+shade = "#1aff8c2e"
+depth = 0.3
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "JetBrainsMono-Light"
+size = 0.15
+x = 0.06
+y = 0.2
+align = "left"
+color = "#c9ffe2"
+shadow = "#2dff95a6"
+shadow_offset = [0.0, 0.0]
+shadow_blur = 0.1
+depth = 0.15
+[[layer.motion]]
+property = "opacity"
+amplitude = 0.02
+period = 0.23
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 0.35
+delay = 0.2
+easing = "linear"
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%a %-d %b}  ·  {host}  ·  up {uptime}"
+font = "JetBrainsMono-Light"
+size = 0.026
+x = 0.064
+y = 0.3
+align = "left"
+case = "upper"
+tracking = 0.12
+color = "#7fdcaa"
+depth = 0.15
+
+[[layer]]
+kind = "text"
+text = "{cpu}"
+font = "JetBrainsMono-Light"
+size = 0.1
+x = 0.74
+y = 0.2
+align = "right"
+color = "#5dffae"
+shadow = "#2dff9580"
+shadow_offset = [0.0, 0.0]
+shadow_blur = 0.12
+depth = 0.15
+
+[[layer]]
+kind = "text"
+text = "CPU %"
+font = "JetBrainsMono-Medium"
+size = 0.02
+x = 0.742
+y = 0.285
+align = "right"
+tracking = 0.2
+color = "#3fb67f"
+depth = 0.15
+
+[[layer]]
+kind = "text"
+text = "{mem}"
+font = "JetBrainsMono-Light"
+size = 0.1
+x = 0.94
+y = 0.2
+align = "right"
+color = "#ffb547"
+shadow = "#ffa21f66"
+shadow_offset = [0.0, 0.0]
+shadow_blur = 0.12
+depth = 0.15
+
+[[layer]]
+kind = "text"
+text = "MEM %  ·  {mem_used}"
+font = "JetBrainsMono-Medium"
+size = 0.02
+x = 0.942
+y = 0.285
+align = "right"
+tracking = 0.2
+color = "#b98534"
+depth = 0.15
+
+[[layer]]
+kind = "solid"
+x = 0.075
+y = 0.405
+w = 0.018
+h = 0.004
+color = "#5dffae"
+depth = 0.3
+
+[[layer]]
+kind = "text"
+text = "CPU"
+font = "JetBrainsMono-Medium"
+size = 0.02
+x = 0.092
+y = 0.405
+align = "left"
+tracking = 0.2
+color = "#7fdcaa"
+depth = 0.3
+
+[[layer]]
+kind = "solid"
+x = 0.155
+y = 0.405
+w = 0.018
+h = 0.004
+color = "#ffb547"
+depth = 0.3
+
+[[layer]]
+kind = "text"
+text = "MEMORY"
+font = "JetBrainsMono-Medium"
+size = 0.02
+x = 0.172
+y = 0.405
+align = "left"
+tracking = 0.2
+color = "#c79a55"
+depth = 0.3
+
+[[layer]]
+kind = "text"
+text = "LOAD {load}"
+font = "JetBrainsMono-Medium"
+size = 0.02
+x = 0.94
+y = 0.405
+align = "right"
+tracking = 0.2
+color = "#7fdcaa"
+depth = 0.3
+
+[[layer]]
+kind = "text"
+text = "−2 MIN"
+font = "JetBrainsMono-Light"
+size = 0.017
+x = 0.06
+y = 0.865
+align = "left"
+tracking = 0.2
+color = "#4c9d74"
+depth = 0.3
+
+[[layer]]
+kind = "text"
+text = "NOW"
+font = "JetBrainsMono-Light"
+size = 0.017
+x = 0.94
+y = 0.865
+align = "right"
+tracking = 0.2
+color = "#4c9d74"
+depth = 0.3
+
+[[layer]]
+kind = "image"
+source = "scanlines.png"
+fit = "stretch"
+repeat = [480, 300]
+depth = 0.0

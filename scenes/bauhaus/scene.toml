@@ -1,0 +1,211 @@
+format = 1
+name = "Bauhaus"
+description = "Primary shapes on warm paper, slowly turning around a split, poster-sized clock."
+author = "enzUI"
+fps = 20
+background = "#efe6d3"
+sleep_dim = 0.55
+
+[parallax]
+shift = 0.06
+duration = 1.0
+easing = "out-back"
+range = 4
+
+[[layer]]
+kind = "gradient"
+colors = ["#f3ead8", "#e9dec7"]
+angle = 120
+
+[[layer]]
+kind = "ring"
+x = 0.62
+y = 0.46
+radius = 0.44
+thickness = 0.012
+softness = 0.2
+color = "#1c1c1c"
+depth = 0.15
+[[layer.motion]]
+property = "scale"
+amplitude = 0.015
+period = 23
+
+[[layer]]
+kind = "orb"
+id = "blue"
+x = 0.66
+y = 0.66
+radius = 0.33
+softness = 0.004
+color = "#1f4e9c"
+depth = 0.35
+[[layer.motion]]
+property = "x"
+unit = "height"
+amplitude = 0.02
+period = 41
+[[layer.motion]]
+property = "y"
+amplitude = 0.018
+period = 37
+phase = 0.25
+[[layer.motion]]
+property = "x"
+on = "unlock"
+from = 0.6
+duration = 1.6
+easing = "out-back"
+
+[[layer]]
+kind = "ring"
+id = "red"
+x = 0.25
+y = 0.73
+radius = 0.2
+thickness = 1.0
+softness = 0.01
+sweep = 0.5
+start = 0.25
+caps = "flat"
+color = "#d64533"
+depth = 0.55
+[[layer.motion]]
+property = "rotation"
+amplitude = 24
+period = 29
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.5
+duration = 1.5
+delay = 0.1
+easing = "out-back"
+
+[[layer]]
+kind = "orb"
+id = "yellow"
+x = 0.86
+y = 0.2
+radius = 0.09
+softness = 0.01
+color = "#f2b632"
+depth = 0.25
+[[layer.motion]]
+property = "y"
+amplitude = 0.02
+period = 17
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = -0.4
+duration = 1.4
+delay = 0.2
+easing = "out-back"
+
+[[layer]]
+kind = "solid"
+id = "bar"
+x = 0.47
+y = 0.5
+w = 0.75
+h = 0.028
+rotation = -28
+color = "#1c1c1c"
+depth = 0.45
+[[layer.motion]]
+property = "rotation"
+amplitude = 3
+period = 31
+[[layer.motion]]
+property = "x"
+on = "unlock"
+from = -1.0
+duration = 1.4
+delay = 0.15
+easing = "out-cubic"
+
+[[layer]]
+kind = "image"
+source = "dot.png"
+fit = "stretch"
+x = 0.84
+y = 0.86
+w = 0.14
+h = 0.14
+repeat = [6, 5]
+depth = 0.2
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.3
+duration = 1.4
+delay = 0.25
+easing = "out-back"
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H}"
+font = "LeagueSpartan-ExtraBold"
+size = 0.42
+x = 0.08
+y = 0.37
+align = "left"
+color = "#1c1c1c"
+depth = 0.6
+[[layer.motion]]
+property = "x"
+on = "unlock"
+from = -0.25
+duration = 1.2
+delay = 0.3
+easing = "out-back"
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%M}"
+font = "LeagueSpartan-ExtraBold"
+size = 0.42
+x = 0.66
+y = 0.69
+color = "#f3ead8"
+depth = 0.35
+[[layer.motion]]
+property = "x"
+unit = "height"
+amplitude = 0.02
+period = 41
+[[layer.motion]]
+property = "y"
+amplitude = 0.018
+period = 37
+phase = 0.25
+[[layer.motion]]
+property = "x"
+on = "unlock"
+from = 0.6
+duration = 1.6
+easing = "out-back"
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%A  %-d  %B}"
+font = "LeagueSpartan-Regular"
+size = 0.026
+x = 0.965
+y = 0.62
+rotation = -90
+case = "upper"
+tracking = 0.4
+color = "#1c1c1c"
+depth = 0.2
+
+[[layer]]
+kind = "image"
+source = "grain.png"
+fit = "stretch"
+repeat = [8, 5]
+opacity = 0.8

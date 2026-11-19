@@ -1,0 +1,29 @@
+[package]
+publish = false
+name = "enzwall"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Animated, parallax and live-information wallpapers for Wayland"
+
+[dependencies]
+enzui-core = { git = "https://github.com/enz1m/enzui.git", rev = "d728f9965b0120d776d3f79c05e09c2b9240d7ce", features = ["locale-formatters"] }
+enzwall-scene = { path = "../enzwall-scene" }
+ab_glyph = "0.2"
+glow = "0.16"
+khronos-egl = { version = "6", features = ["static"] }
+libc = "0.2"
+rustix = { version = "1.1", features = ["net", "process"] }
+png = "0.17"
+serde_json = "1"
+smithay-client-toolkit = { version = "0.19", default-features = false }
+wayland-client = { version = "0.31", features = ["system"] }
+wayland-protocols = { version = "0.32", features = ["client"] }
+wayland-sys = { version = "0.31", features = ["egl", "client"] }
+
+[dev-dependencies]
+tempfile = "3"
+
+[lints]
+workspace = true

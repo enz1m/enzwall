@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+"""Renders a scene at several moments into one review image.
+
+  tools/contact-sheet <scene-dir> <out.png> [--size 1440x900]
+
+Tiles: resting (t=14), mid-unlock (0.9 s), after unlock (3 s), desktop 3
+mid-slide and settled, asleep, plus a 16:9 and a portrait-ish crop check.
+"""
+import subprocess, sys, tempfile
+from pathlib import Path
+from PIL import Image, ImageDraw
+
+here = Path(__file__).resolve().parent.parent
+binary = here / "target/release/enzwall"
+scene, out = Path(sys.argv[1]), Path(sys.argv[2])
+size = sys.argv[sys.argv.index("--size") + 1] if "--size" in sys.argv else "1440x900"
+clock = "1790516220"
+shots = [
+    ("resting", ["--time", "14"], size),
+    ("unlock 0.9 s", ["--time", "20.9", "--event", "unlock@20"], size),
+    ("unlock 3 s", ["--time", "23", "--event", "unlock@20"], size),
+    ("desktop 3, mid", ["--time", "30.4", "--workspace", "2@30"], size),
+    ("desktop 3", ["--time", "33", "--workspace", "2@30"], size),
+    ("asleep", ["--time", "44", "--event", "sleep@40"], size),
+    ("resting +6 s", ["--time", "20"], size),
+    ("16:9", ["--time", "14"], "1920x1080"),
+    ("21:9", ["--time", "14"], "2520x1080"),
+]
+tiles = []
+with tempfile.TemporaryDirectory() as tmp:
+    for i, (label, args, dims) in enumerate(shots):
+        path = Path(tmp) / f"{i}.png"
+        subprocess.run([binary, "snapshot", scene, path, "--size", dims, "--clock", clock, *args], check=True)
+        image = Image.open(path).convert("RGB")
+        image.thumbnail((640, 400))
+        tiles.append((label, image.copy()))
+cols = 3
+tw, th = 640, 400
+sheet = Image.new("RGB", (cols * tw, ((len(tiles) + cols - 1) // cols) * (th + 22)), "#111")
+draw = ImageDraw.Draw(sheet)
+for i, (label, image) in enumerate(tiles):
+    x, y = (i % cols) * tw, (i // cols) * (th + 22)
+    sheet.paste(image, (x + (tw - image.width) // 2, y + 22 + (th - image.height) // 2))
+    draw.text((x + 8, y + 4), label, fill="#ddd")
+sheet.save(out)

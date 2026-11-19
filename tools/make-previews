@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+here=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+bin=${ENZWALL:-$here/target/release/enzwall}
+for scene in "$here"/scenes/*/; do
+    [ -f "$scene/scene.toml" ] || continue
+    "$bin" snapshot "$scene" "$scene/preview.png" --size 640x360 --time 14 --clock 1790516220
+    echo "preview: $(basename "$scene")"
+done

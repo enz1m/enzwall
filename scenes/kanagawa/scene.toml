@@ -1,0 +1,268 @@
+format = 1
+name = "Kanagawa"
+description = "A woodblock print in motion: the great wave curls over a passing sailboat while Fuji waits in the distance."
+author = "enzUI"
+fps = 20
+background = "#ecdcbd"
+sleep_dim = 0.55
+
+[parallax]
+shift = 0.07
+duration = 1.1
+range = 4
+
+[[layer]]
+kind = "gradient"
+colors = ["#6c7f95", "#c9c3ad", "#ecdcbd", "#ecdcbd"]
+angle = 90
+
+[[layer]]
+kind = "image"
+source = "cloud-1.png"
+fit = "contain"
+x = 0.72
+y = 0.4
+w = 0.42
+h = 0.07
+opacity = 0.9
+depth = 0.08
+[[layer.motion]]
+property = "x"
+amplitude = 0.03
+period = 70
+
+[[layer]]
+kind = "image"
+source = "cloud-2.png"
+fit = "contain"
+x = 0.55
+y = 0.5
+w = 0.3
+h = 0.06
+opacity = 0.85
+depth = 0.1
+[[layer.motion]]
+property = "x"
+amplitude = -0.025
+period = 55
+
+[[layer]]
+kind = "image"
+source = "fuji.png"
+fit = "stretch"
+x = 0.64
+y = 0.61
+w = 0.24
+h = 0.12
+depth = 0.12
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.06
+duration = 2.4
+delay = 0.3
+easing = "out-cubic"
+
+[[layer]]
+kind = "image"
+source = "sea-1.png"
+fit = "stretch"
+tile = true
+y = 0.76
+w = 1.35
+h = 0.34
+depth = 0.2
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 90
+amplitude = 1
+
+[[layer]]
+kind = "image"
+id = "great-wave"
+source = "great-wave.png"
+fit = "stretch"
+x = 0.32
+y = 0.52
+w = 0.78
+h = 0.84
+pivot = [0.1, 1.0]
+depth = 0.5
+[[layer.motion]]
+property = "scale"
+amplitude = 0.012
+period = 9
+[[layer.motion]]
+property = "rotation"
+amplitude = 0.8
+period = 9
+phase = 0.2
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.5
+duration = 2.4
+easing = "out-cubic"
+
+[[layer]]
+kind = "image"
+source = "sea-2.png"
+fit = "stretch"
+tile = true
+y = 0.81
+w = 1.35
+h = 0.34
+depth = 0.35
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 70
+amplitude = -1
+[[layer.motion]]
+property = "y"
+amplitude = 0.006
+period = 5
+
+[[layer]]
+kind = "image"
+id = "sailboat"
+source = "boat.png"
+fit = "contain"
+x = 0.82
+y = 0.696
+w = 0.13
+h = 0.14
+pivot = [0.5, 0.85]
+depth = 0.4
+[[layer.motion]]
+property = "rotation"
+amplitude = 2.0
+period = 7
+[[layer.motion]]
+property = "y"
+amplitude = 0.004
+period = 7
+phase = 0.25
+
+[[layer]]
+kind = "image"
+source = "sea-3.png"
+fit = "stretch"
+tile = true
+y = 0.9
+w = 1.35
+h = 0.34
+depth = 0.8
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 55
+amplitude = 1
+[[layer.motion]]
+property = "y"
+amplitude = 0.008
+period = 6
+phase = 0.5
+
+[[layer]]
+kind = "image"
+source = "sea-4.png"
+fit = "stretch"
+tile = true
+y = 1.02
+w = 1.35
+h = 0.36
+depth = 1.2
+[[layer.motion]]
+property = "phase"
+wave = "scroll"
+period = 42
+amplitude = -1
+[[layer.motion]]
+property = "y"
+amplitude = 0.012
+period = 7
+
+[[layer]]
+kind = "image"
+source = "cartouche.png"
+fit = "stretch"
+x = 0.955
+y = 0.28
+w = 0.05
+h = 0.44
+depth = 0.05
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%A  %-d  %B}"
+font = "ShipporiMincho-Medium"
+size = 0.024
+x = 0.955
+y = 0.28
+rotation = 90
+case = "upper"
+tracking = 0.24
+color = "#2a2430"
+depth = 0.05
+
+[[layer]]
+kind = "image"
+id = "seal"
+source = "seal.png"
+fit = "contain"
+x = 0.85
+y = 0.16
+w = 0.2
+h = 0.2
+depth = 0.05
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 1.35
+to = 1
+duration = 0.5
+delay = 1.4
+easing = "out-back"
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 0.2
+delay = 1.4
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "ShipporiMincho-ExtraBold"
+size = 0.075
+x = 0.85
+y = 0.158
+color = "#f4e8d0"
+depth = 0.05
+[[layer.motion]]
+property = "scale"
+on = "unlock"
+from = 1.35
+to = 1
+duration = 0.5
+delay = 1.4
+easing = "out-back"
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 0.2
+delay = 1.4
+
+[[layer]]
+kind = "image"
+source = "washi.png"
+fit = "stretch"
+repeat = [4, 2.5]
+blend = "multiply"

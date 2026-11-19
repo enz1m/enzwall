@@ -1,0 +1,227 @@
+format = 1
+name = "Riso City"
+description = "A two-ink risograph poster of the city at dusk; the tram crosses and the time is overprinted in pink and blue."
+author = "enzUI"
+fps = 20
+background = "#f4efe3"
+sleep_dim = 0.5
+
+[parallax]
+shift = 0.06
+duration = 0.9
+easing = "out-back"
+range = 4
+
+[[layer]]
+kind = "image"
+source = "sun.png"
+fit = "contain"
+x = 0.7
+y = 0.34
+w = 0.5
+h = 0.5
+blend = "multiply"
+depth = 0.08
+[[layer.motion]]
+property = "y"
+on = "day"
+from = 0.12
+to = -0.12
+[[layer.motion]]
+property = "rotation"
+amplitude = 2
+period = 30
+
+[[layer]]
+kind = "image"
+source = "cloud-1.png"
+fit = "contain"
+x = 0.25
+y = 0.2
+w = 0.42
+h = 0.11
+blend = "multiply"
+depth = 0.15
+[[layer.motion]]
+property = "x"
+amplitude = 0.05
+period = 60
+
+[[layer]]
+kind = "image"
+source = "cloud-2.png"
+fit = "contain"
+x = 0.88
+y = 0.46
+w = 0.36
+h = 0.1
+blend = "multiply"
+depth = 0.2
+[[layer.motion]]
+property = "x"
+amplitude = -0.04
+period = 48
+
+[[layer]]
+kind = "image"
+source = "city-far.png"
+fit = "stretch"
+x = 0.5
+y = 0.62
+w = 1.3
+h = 0.5
+blend = "multiply"
+depth = 0.3
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.2
+duration = 1.2
+delay = 0.1
+easing = "out-back"
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "Anton-Regular"
+size = 0.5
+x = 0.345
+y = 0.5
+color = "#0078bfb0"
+blend = "multiply"
+depth = 0.4
+[[layer.motion]]
+property = "x"
+on = "unlock"
+from = -0.6
+duration = 1.0
+delay = 0.3
+easing = "out-back"
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "Anton-Regular"
+size = 0.5
+x = 0.338
+y = 0.492
+color = "#ff48b0"
+blend = "multiply"
+depth = 0.42
+[[layer.motion]]
+property = "x"
+on = "unlock"
+from = 0.6
+duration = 1.0
+delay = 0.3
+easing = "out-back"
+
+[[layer]]
+kind = "image"
+source = "city-near.png"
+fit = "stretch"
+x = 0.5
+y = 0.78
+w = 1.4
+h = 0.5
+blend = "multiply"
+depth = 0.6
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.3
+duration = 1.2
+delay = 0.2
+easing = "out-back"
+
+[[layer]]
+kind = "image"
+source = "windows.png"
+fit = "stretch"
+x = 0.5
+y = 0.78
+w = 1.4
+h = 0.5
+blend = "multiply"
+depth = 0.6
+[[layer.motion]]
+property = "opacity"
+on = "day"
+from = 1.0
+to = 0.35
+[[layer.motion]]
+property = "y"
+on = "unlock"
+from = 0.3
+duration = 1.2
+delay = 0.2
+easing = "out-back"
+
+[[layer]]
+kind = "image"
+source = "ground.png"
+fit = "stretch"
+x = 0.5
+y = 0.97
+w = 1.4
+h = 0.09
+blend = "multiply"
+depth = 0.8
+
+[[layer]]
+kind = "image"
+id = "tram"
+source = "tram.png"
+fit = "contain"
+x = 0.5
+y = 0.918
+w = 0.22
+h = 0.08
+depth = 0.8
+[[layer.motion]]
+property = "x"
+wave = "saw"
+period = 38
+amplitude = 0.8
+[[layer.motion]]
+property = "y"
+amplitude = 0.0015
+period = 0.6
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%A %-d %B}  ·  {host}"
+font = "SpaceMono-Regular"
+size = 0.022
+x = 0.06
+y = 0.08
+align = "left"
+case = "upper"
+tracking = 0.2
+color = "#0078bf"
+blend = "multiply"
+depth = 0.1
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "No. {date:%j}"
+font = "SpaceMono-Regular"
+size = 0.022
+x = 0.94
+y = 0.08
+align = "right"
+tracking = 0.2
+color = "#ff48b0"
+blend = "multiply"
+depth = 0.1
+
+[[layer]]
+kind = "image"
+source = "paper.png"
+fit = "stretch"
+repeat = [5, 3]
+blend = "multiply"

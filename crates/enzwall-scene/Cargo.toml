@@ -1,0 +1,15 @@
+[package]
+publish = false
+name = "enzwall-scene"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Scene format, validation and animation evaluation for enzwall"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+toml = { version = "0.8", default-features = false, features = ["parse"] }
+
+[lints]
+workspace = true

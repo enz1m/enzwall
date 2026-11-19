@@ -1,0 +1,58 @@
+format = 1
+name = "Still"
+description = "No motion at all: a calm gradient and a clock. Wakes once a minute."
+author = "enzUI"
+background = "#1d2b3a"
+
+[parallax]
+shift = 0.04
+
+[[layer]]
+kind = "gradient"
+colors = ["#2b3f55", "#1b2635", "#121820"]
+angle = 115
+
+[[layer]]
+kind = "orb"
+x = 0.78
+y = 0.3
+radius = 0.5
+softness = 1.0
+color = "#6f9bd11f"
+blend = "add"
+depth = 0.5
+
+[[layer]]
+role = "clock"
+kind = "text"
+text = "{time:%H:%M}"
+font = "Outfit-ExtraLight"
+size = 0.16
+x = 0.5
+y = 0.46
+color = "#eef3f8e6"
+[[layer.motion]]
+property = "opacity"
+on = "unlock"
+from = 0
+to = 1
+duration = 0.8
+
+[[layer]]
+role = "date"
+kind = "text"
+text = "{date:%A  ·  %-d %B}"
+font = "Outfit-Regular"
+size = 0.024
+case = "upper"
+tracking = 0.34
+x = 0.5
+y = 0.57
+color = "#c3cedbb0"
+
+[[layer]]
+kind = "image"
+source = "grain.png"
+fit = "stretch"
+repeat = [8, 5]
+opacity = 0.6
