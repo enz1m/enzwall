@@ -137,9 +137,6 @@ impl Drop for PendingImages<'_> {
 }
 
 impl Stage {
-    pub(crate) fn load(renderer: &Renderer, dir: &Path, now: f64) -> Result<Self, String> {
-        Self::load_filtered(renderer, dir, now, false, false)
-    }
     pub(crate) fn load_filtered(
         renderer: &Renderer,
         dir: &Path,

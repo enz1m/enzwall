@@ -31,7 +31,7 @@ USAGE:
   enzwall list <scenes-dir>
   enzwall check <scene-dir>
   enzwall snapshot <scene-dir> <out.png> [--size WxH] [--time S] [--frames N --interval S]
-                   [--event NAME@S]... [--workspace N@S]... [--clock UNIX]
+                   [--event NAME@S]... [--workspace N@S]... [--clock UNIX] [--hide-clock] [--hide-date]
   enzwall stream <scene-dir> [--size WxH] [--fps 1..30] [--hide-clock] [--hide-date] [--static]
   enzwall bench <scene-dir> [--size WxH] [--frames N]
 ";
@@ -272,6 +272,7 @@ fn run() -> Result<(), String> {
             let out = PathBuf::from(args.positional("output PNG")?);
             let (mut dims, mut time, mut frames, mut interval, mut cues, mut clock) =
                 ((1920, 1080), 0.0, 1, 0.1, Vec::new(), None);
+            let (mut hide_clock, mut hide_date) = (false, false);
             while let Some(flag) = args.0.next() {
                 match flag.as_str() {
                     "--size" => dims = size(&args.value(&flag)?)?,
@@ -288,6 +289,8 @@ fn run() -> Result<(), String> {
                     "--clock" => {
                         clock = Some(args.value(&flag)?.parse().map_err(|_| "invalid --clock")?);
                     }
+                    "--hide-clock" => hide_clock = true,
+                    "--hide-date" => hide_date = true,
                     "--event" => {
                         let value = args.value(&flag)?;
                         let (name, t) = at(&value)?;
@@ -310,7 +313,13 @@ fn run() -> Result<(), String> {
             if !(time + f64::from(frames - 1) * interval).is_finite() {
                 return Err("snapshot end time is out of range".into());
             }
-            snapshot::snapshot(&dir, &out, dims, time, frames, interval, &cues, clock)
+            let shown = snapshot::Shown {
+                hide_clock,
+                hide_date,
+            };
+            snapshot::snapshot(
+                &dir, &out, dims, time, frames, interval, &cues, clock, shown,
+            )
         }
         "bench" => {
             let dir = PathBuf::from(args.positional("scene directory")?);

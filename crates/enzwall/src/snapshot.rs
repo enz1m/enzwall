@@ -86,8 +86,21 @@ pub(crate) fn write_png(path: &Path, width: u32, height: u32, rgba: &[u8]) -> Re
     writer.write_image_data(rgba).map_err(|e| e.to_string())
 }
 
-fn prepare(offscreen: &Offscreen, dir: &Path, cues: &[Cue]) -> Result<Stage, String> {
-    let mut stage = Stage::load(&offscreen.renderer, dir, 0.0)?;
+/// Which text layers a snapshot keeps, matching the wallpaper's own settings.
+#[derive(Clone, Copy, Default)]
+pub(crate) struct Shown {
+    pub hide_clock: bool,
+    pub hide_date: bool,
+}
+
+fn prepare(offscreen: &Offscreen, dir: &Path, cues: &[Cue], shown: Shown) -> Result<Stage, String> {
+    let mut stage = Stage::load_filtered(
+        &offscreen.renderer,
+        dir,
+        0.0,
+        shown.hide_clock,
+        shown.hide_date,
+    )?;
     for cue in cues {
         match *cue {
             Cue::Event(trigger, at) => stage.runtime.fire(trigger, at),
@@ -112,9 +125,10 @@ pub(crate) fn snapshot(
     interval: f64,
     cues: &[Cue],
     clock: Option<i64>,
+    shown: Shown,
 ) -> Result<(), String> {
     let offscreen = Offscreen::new(size.0, size.1)?;
-    let mut stage = prepare(&offscreen, dir, cues)?;
+    let mut stage = prepare(&offscreen, dir, cues, shown)?;
     let mut vars = Vars::new();
     if let Some(at) = clock {
         vars.freeze_time(at);
@@ -149,7 +163,7 @@ pub(crate) struct Bench {
 /// Benchmarks frames at 60 fps scene time; GPU timing requires driver timer-query support.
 pub(crate) fn bench(dir: &Path, size: (u32, u32), frames: u32) -> Result<Bench, String> {
     let offscreen = Offscreen::new(size.0, size.1)?;
-    let mut stage = prepare(&offscreen, dir, &[Cue::Workspace(1, 0.5)])?;
+    let mut stage = prepare(&offscreen, dir, &[Cue::Workspace(1, 0.5)], Shown::default())?;
     let mut vars = Vars::new();
     stage.refresh_texts(&offscreen.renderer, &mut vars, size.1, 0.0)?;
     let gl = &offscreen.renderer.gl;
