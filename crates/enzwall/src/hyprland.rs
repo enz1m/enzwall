@@ -66,9 +66,8 @@ impl Hyprland {
         index(&monitor["activeWorkspace"]["id"].to_string())
     }
 
-    /// Whether a fullscreen window covers this wallpaper's output: one in
-    /// fullscreen (not maximized: beside a maximized window the shell's
-    /// glass still shows the wallpaper) on the output's active desktop.
+    /// Whether the active desktop is covered by native fullscreen or by an
+    /// opaque borderless window confirmed by the compositor's renderer.
     pub(crate) fn covered(&self) -> Option<bool> {
         let monitors = self.query(b"j/monitors")?;
         let clients = self.query(b"j/clients")?;
@@ -116,6 +115,9 @@ impl Hyprland {
                         out.push(HyprEvent::Workspace(i));
                     }
                 }
+                "enzui-wallpaper-coverage" if self.output.as_deref().is_none_or(|o| o == data) => {
+                    coverage = true;
+                }
                 "fullscreen" | "openwindow" | "closewindow" | "movewindowv2" | "monitoradded"
                 | "monitorremoved" | "minimized" => coverage = true,
                 _ => {}
@@ -138,6 +140,9 @@ fn covers(
         .as_array()?
         .iter()
         .find(|m| output.is_none_or(|output| m["name"] == output))?;
+    if monitor["opaqueBorderlessCover"] == true {
+        return Some(true);
+    }
     Some(clients.as_array()?.iter().any(|client| {
         client["fullscreen"] == 2
             && client["mapped"] == true
@@ -149,6 +154,51 @@ fn covers(
 
 #[cfg(test)]
 mod tests {
+    use std::io::Write as _;
+    use std::os::unix::net::UnixStream;
+
+    #[test]
+    fn opaque_borderless_coverage_is_per_output_and_requires_compositor_confirmation() {
+        let monitors = serde_json::json!([
+            {"name": "A", "opaqueBorderlessCover": true},
+            {"name": "B", "opaqueBorderlessCover": false},
+            {"name": "C"},
+        ]);
+        let clients = serde_json::json!([{
+            "fullscreen": 0, "mapped": true, "hidden": false,
+            "tags": ["enzui-borderless-fullscreen"],
+        }]);
+        assert_eq!(super::covers(&monitors, &clients, Some("A")), Some(true));
+        assert_eq!(super::covers(&monitors, &clients, Some("B")), Some(false));
+        assert_eq!(super::covers(&monitors, &clients, Some("C")), Some(false));
+    }
+
+    #[test]
+    fn borderless_coverage_events_refresh_only_the_named_output() {
+        let (events, mut sender) = UnixStream::pair().expect("event socket");
+        events
+            .set_nonblocking(true)
+            .expect("nonblocking event socket");
+        let mut hyprland = super::Hyprland {
+            dir: Default::default(),
+            events,
+            buffer: Vec::new(),
+            focused: None,
+            output: Some("A".into()),
+        };
+        sender
+            .write_all(b"enzui-wallpaper-coverage>>B\n")
+            .expect("event for B");
+        assert!(hyprland.receive().is_empty());
+        sender
+            .write_all(b"enzui-wallpaper-coverage>>A\n")
+            .expect("event for A");
+        assert!(matches!(
+            hyprland.receive().as_slice(),
+            [super::HyprEvent::Coverage]
+        ));
+    }
+
     #[test]
     fn workspace_ids_map_to_zero_based_desktops() {
         assert_eq!(super::index("1"), Some(0));

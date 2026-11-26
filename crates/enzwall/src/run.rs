@@ -298,8 +298,7 @@ impl Engine {
         self.dirty = true;
     }
 
-    /// A fullscreen window hides the wallpaper: its loops stop, so nothing
-    /// is drawn until it shows again (a clock still turns, once a minute).
+    // Clock updates can still redraw while coverage pauses the loops.
     fn set_covered(&mut self, covered: bool) {
         if self.covered == covered {
             return;

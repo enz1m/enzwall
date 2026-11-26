@@ -47,6 +47,13 @@ command line and exits non-zero when the reply is not ok.
   `wlr-layer-shell` background on that output.
 - **Desktops:** on Hyprland, pass `--hyprland auto` (or the instance directory);
   otherwise send `workspace N` on every desktop change.
+- **Coverage:** Hyprland's native fullscreen state pauses loops on its output.
+  The enzimOS compositor also reports coverage for a rendered window tagged
+  `enzui-borderless-fullscreen` on the active workspace. Its main surface must
+  fill the output with a known opaque buffer or a complete opaque region at
+  full opacity. If the surface is clipped, rounded, or a render pass may sample
+  the wallpaper for blur, loops continue. Older compositors retain the native
+  fullscreen behavior.
 - **Lock screens:** send `event unlock` after a successful unlock.
 - **Idle:** handled by `ext-idle-notify-v1` when the compositor offers it
   (`--idle-timeout` overrides the scene; 0 never sleeps).
