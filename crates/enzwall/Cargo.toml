@@ -8,7 +8,7 @@ rust-version.workspace = true
 description = "Animated, parallax and live-information wallpapers for Wayland"
 
 [dependencies]
-enzui-core = { git = "https://github.com/enz1m/enzui.git", rev = "46f267ecf6642423a7d716488200a5ceb8726655", features = ["locale-formatters"] }
+enzui-core = { git = "https://github.com/enz1m/enzui.git", rev = "46648f263fbfd31bb2a6327c4dda4845f8d5af97", features = ["locale-formatters"] }
 enzwall-scene = { path = "../enzwall-scene" }
 ab_glyph = "0.2"
 glow = "0.16"
